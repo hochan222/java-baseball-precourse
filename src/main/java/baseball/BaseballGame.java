@@ -3,9 +3,6 @@ package baseball;
 import nextstep.utils.*;
 
 public class BaseballGame {
-
-    String _state = new String("play");
-
     StringBuilder _computerBallCount = new StringBuilder();
     StringBuilder _userBallCount = new StringBuilder();
 
@@ -17,6 +14,7 @@ public class BaseballGame {
     }
 
     public void setComputerNumber() {
+        resetBallCount(_computerBallCount);
         while (_computerBallCount.toString().length() < 3) {
             String temp = Integer.toString(getRandomSingleDigit());
 
@@ -24,6 +22,10 @@ public class BaseballGame {
                 _computerBallCount.append(temp);
             }
         }
+    }
+
+    public void resetBallCount(StringBuilder str) {
+        str.setLength(0);
     }
 
     public boolean setUserBallCountInput() {
@@ -46,12 +48,8 @@ public class BaseballGame {
         return userInput.length() == 3 ? true : false;
     }
 
-    public void getUserInputNumber() {
-
-    }
-
-    public void init() {
-        _userBallCount = new StringBuilder();
+    public void reset() {
+        resetBallCount(_userBallCount);
         _strikeCount = 0;
         _ballCount = 0;
     }
@@ -66,23 +64,35 @@ public class BaseballGame {
         setUserBallCountInput();
 
         while(!checkAnswer()) {
-            init();
+            reset();
             printComputerBallCount();
             setUserBallCountInput();
         };
 
-        System.out.println(_userBallCount.toString());
-        System.out.println(_state);
-        System.out.println(_state.equals("play"));
-        System.out.println(_state == "play");
-
-        while (_state == "play") {
-            printComputerBallCount();
+        if(checkGameContinue()) {
+            reset();
+            play();
         }
     }
 
+    public boolean checkGameContinue() {
+        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+
+        String userInput = Console.readLine();
+
+        while (!(userInput.equals("1") || userInput.equals("2"))) {
+            System.out.println("다시 입력해주세요.");
+            userInput = Console.readLine();
+        }
+
+        if (userInput.equals("1")) {
+            return true;
+        }
+        return false;
+    };
+
     public boolean checkAnswer() {
-        if (_userBallCount.equals(_computerBallCount)) {
+        if (_userBallCount.toString().equals(_computerBallCount.toString())) {
             System.out.println("세개의 숫자를 모두 맞히셨습니다. 게임 종료");
             return true;
         }
