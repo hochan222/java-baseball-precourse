@@ -10,23 +10,15 @@ public class BaseballGame {
     int _strikeCount = 0;
     int _ballCount = 0;
 
-    public int getRandomSingleDigit() {
-        return Randoms.pickNumberInRange(1, 9);
-    }
-
     public void setComputerNumber() {
-        resetBallCount(_computerBallCount);
+        Util.resetBallCount(_computerBallCount);
         while (_computerBallCount.toString().length() < 3) {
-            String temp = Integer.toString(getRandomSingleDigit());
+            String temp = Integer.toString(Util.getRandomSingleDigit());
 
             if (!_computerBallCount.toString().contains(temp)) {
                 _computerBallCount.append(temp);
             }
         }
-    }
-
-    public void resetBallCount(StringBuilder str) {
-        str.setLength(0);
     }
 
     public boolean setUserBallCountInput() {
@@ -53,17 +45,13 @@ public class BaseballGame {
     }
 
     public void reset() {
-        resetBallCount(_userBallCount);
+        Util.resetBallCount(_userBallCount);
         _strikeCount = 0;
         _ballCount = 0;
     }
 
     public void printComputerBallCount() {
         System.out.println("computer number: " + _computerBallCount.toString());
-    }
-
-    public void printEndGame() {
-        System.out.printf("게임 끝");
     }
 
     public void play() {
@@ -83,7 +71,7 @@ public class BaseballGame {
             play();
         }
 
-        printEndGame();
+        Print.printEndGame();
     }
 
     public boolean checkGameContinue() {
