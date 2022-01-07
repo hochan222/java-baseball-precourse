@@ -27,14 +27,14 @@
 
 ### 프로그래밍 요구 사항
 
-- [ ] 프로그램을 실행하는 시작점은 `Application`의 `main()`이다.
-- [ ] JDK 8 버전에서 실행 가능해야 한다.
-- [ ] JDK에서 기본 제공하는 Random, Scanner API 대신 `nextstep.utils`에서 제공하는 `Randoms`, `Console` API를 활용해 구현해야 한다.
-  - [ ] Random 값 추츨은 `nextstep.utils.Randoms`의 `pickNumberInRange()`를 활용한다.
-  - [ ] 사용자가 입력하는 값은 `nextstep.utils.Console`의 `readLine()`를 활용한다.
+- [x] 프로그램을 실행하는 시작점은 `Application`의 `main()`이다.
+- [x] JDK 8 버전에서 실행 가능해야 한다.
+- [x] JDK에서 기본 제공하는 Random, Scanner API 대신 `nextstep.utils`에서 제공하는 `Randoms`, `Console` API를 활용해 구현해야 한다.
+  - [x] Random 값 추츨은 `nextstep.utils.Randoms`의 `pickNumberInRange()`를 활용한다.
+  - [x] 사용자가 입력하는 값은 `nextstep.utils.Console`의 `readLine()`를 활용한다.
 - [ ] 프로그램 구현을 완료했을 때, `src/test/java` 디렉터리의 `ApplicationTest`에 있는 모든 테스트 케이스가 성공해야 한다. 
 
-- [ ] 들여쓰기는 `2 spaces`가 아닌 `4 spaces`로 한다.
-- [ ] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
-- [ ] 3항 연산자를 쓰지 않는다.
-- [ ] 함수(또는 메소드)가 한 가지 일만 하도록 최대한 작게 만들어라.
+- [x] 들여쓰기는 `2 spaces`가 아닌 `4 spaces`로 한다.
+- [x] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
+- [x] 3항 연산자를 쓰지 않는다.
+- [x] 함수(또는 메소드)가 한 가지 일만 하도록 최대한 작게 만들어라.

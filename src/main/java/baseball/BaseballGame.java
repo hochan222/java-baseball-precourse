@@ -3,6 +3,7 @@ package baseball;
 import nextstep.utils.*;
 
 public class BaseballGame {
+
     StringBuilder _computerBallCount = new StringBuilder();
     StringBuilder _userBallCount = new StringBuilder();
 
@@ -45,7 +46,10 @@ public class BaseballGame {
 
     // TODO:: 숫자인경우로 한정해야됨. (reg)
     public boolean checkValidInput(String userInput) {
-        return userInput.length() == 3 ? true : false;
+        if (userInput.length() == 3) {
+            return true;
+        }
+        return false;
     }
 
     public void reset() {
@@ -67,13 +71,14 @@ public class BaseballGame {
         printComputerBallCount();
         setUserBallCountInput();
 
-        while(!checkAnswer()) {
+        while (!checkAnswer()) {
             reset();
             printComputerBallCount();
             setUserBallCountInput();
-        };
+        }
+        ;
 
-        if(checkGameContinue()) {
+        if (checkGameContinue()) {
             reset();
             play();
         }
@@ -95,7 +100,9 @@ public class BaseballGame {
             return true;
         }
         return false;
-    };
+    }
+
+    ;
 
     public boolean checkAnswer() {
         if (_userBallCount.toString().equals(_computerBallCount.toString())) {
@@ -106,7 +113,7 @@ public class BaseballGame {
         if (_strikeCount > 0) {
             System.out.printf(_strikeCount + "스트라이크");
             if (_ballCount > 0) {
-                System.out.printf(" "+_ballCount + "볼");
+                System.out.printf(" " + _ballCount + "볼");
             }
             System.out.println();
         }
@@ -115,7 +122,7 @@ public class BaseballGame {
         }
         if (_strikeCount == 0 && _ballCount == 0) {
             System.out.println("낫싱");
-       }
+        }
         return false;
     }
 
