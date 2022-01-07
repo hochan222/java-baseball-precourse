@@ -58,6 +58,10 @@ public class BaseballGame {
         System.out.println("computer number: " + _computerBallCount.toString());
     }
 
+    public void printEndGame() {
+        System.out.printf("게임 끝");
+    }
+
     public void play() {
         setComputerNumber();
         printComputerBallCount();
@@ -73,6 +77,8 @@ public class BaseballGame {
             reset();
             play();
         }
+
+        printEndGame();
     }
 
     public boolean checkGameContinue() {
