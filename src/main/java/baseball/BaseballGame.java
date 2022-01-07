@@ -77,7 +77,7 @@ public class BaseballGame {
     }
 
     public boolean checkAnswer() {
-        if (checkEqualToComputerBallCount()) {
+        if (_userBallCount.equals(_computerBallCount)) {
             System.out.println("세개의 숫자를 모두 맞히셨습니다. 게임 종료");
             return true;
         }
@@ -91,11 +91,10 @@ public class BaseballGame {
         if (_strikeCount == 0 && _ballCount > 0) {
             System.out.printf(_ballCount + "볼");
         }
+        if (_strikeCount == 0 && _ballCount == 0) {
+            System.out.printf("낫싱");
+       }
         return false;
-    }
-
-    public boolean checkEqualToComputerBallCount() {
-        return _userBallCount.equals(_computerBallCount);
     }
 
     public void setStrikeAndBallCount() {
