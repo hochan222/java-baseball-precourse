@@ -2,21 +2,26 @@ package baseball;
 
 import nextstep.utils.*;
 
-//String input = Console.readLine();
-//System.out.println("input : " + input);
-
 public class BaseballGame {
-    int _computerInputNumber = 0;
+    String _state = new String("");
+
+    StringBuilder _computerNumber = new StringBuilder();
+    StringBuilder _userNumber = new StringBuilder();
     int _retryCount = 0;
 
-    public void getRandomSingleDigit() {
-        int randomNumber = Randoms.pickNumberInRange(0, 1);
-        System.out.println(randomNumber);
+    public int getRandomSingleDigit() {
+        return Randoms.pickNumberInRange(1, 9);
     }
 
-    public void getComputerInputNumber() {
-
+    public void setComputerNumber() {
+        _computerNumber.append(getRandomSingleDigit()).append(getRandomSingleDigit())
+            .append(getRandomSingleDigit());
     }
+
+//    public void getUserInput() {
+//        String input = Console.readLine();
+//        System.out.println("숫자를 입력해 주세요 : " + input);
+//    }
 
     public void getUserInputNumber() {
 
@@ -26,7 +31,18 @@ public class BaseballGame {
 
     }
 
-    public void console_log() {
-        System.out.printf("Hello world");
+    public void init() {
+
+    }
+
+    public void printComputerNumber() {
+        System.out.println(_computerNumber.toString());
+    }
+
+    public void play() {
+        setComputerNumber();
+//        getUserInput();
+
+        printComputerNumber();
     }
 }
