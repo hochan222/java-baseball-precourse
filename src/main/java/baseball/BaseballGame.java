@@ -3,10 +3,11 @@ package baseball;
 import nextstep.utils.*;
 
 public class BaseballGame {
-    String _state = new String("");
 
-    StringBuilder _computerNumber = new StringBuilder();
-    StringBuilder _userNumber = new StringBuilder();
+    String _state = new String("play");
+
+    StringBuilder _computerBallCount = new StringBuilder();
+    StringBuilder _userBallCount = new StringBuilder();
     int _retryCount = 0;
 
     public int getRandomSingleDigit() {
@@ -14,20 +15,31 @@ public class BaseballGame {
     }
 
     public void setComputerNumber() {
-        _computerNumber.append(getRandomSingleDigit()).append(getRandomSingleDigit())
+        _computerBallCount.append(getRandomSingleDigit()).append(getRandomSingleDigit())
             .append(getRandomSingleDigit());
     }
 
-//    public void getUserInput() {
-//        String input = Console.readLine();
-//        System.out.println("숫자를 입력해 주세요 : " + input);
-//    }
+    public boolean setUserBallCountInput() {
+        System.out.printf("숫자를 입력해 주세요 : ");
+        String userInput = Console.readLine();
 
-    public void getUserInputNumber() {
+        if (checkValidInput(userInput)) {
+            _userBallCount.append(userInput);
+        } else {
+            ErrorMessage.notValidUserInputValue();
 
+            return false;
+        }
+
+        return true;
     }
 
-    public void checkValidInput() {
+    // TODO:: 숫자인경우로 한정해야됨. (reg)
+    public boolean checkValidInput(String userInput) {
+        return userInput.length() == 3 ? true : false;
+    }
+
+    public void getUserInputNumber() {
 
     }
 
@@ -35,14 +47,21 @@ public class BaseballGame {
 
     }
 
-    public void printComputerNumber() {
-        System.out.println(_computerNumber.toString());
+    public void printComputerBallCount() {
+        System.out.println(_computerBallCount.toString());
     }
 
     public void play() {
         setComputerNumber();
-//        getUserInput();
+        setUserBallCountInput();
 
-        printComputerNumber();
+        System.out.println(_userBallCount.toString());
+        System.out.println(_state);
+        System.out.println(_state.equals("play"));
+        System.out.println(_state == "play");
+
+        while (_state == "play") {
+            printComputerBallCount();
+        }
     }
 }
