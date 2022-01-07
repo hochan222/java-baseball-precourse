@@ -18,8 +18,13 @@ public class BaseballGame {
     }
 
     public void setComputerNumber() {
-        _computerBallCount.append(getRandomSingleDigit()).append(getRandomSingleDigit())
-            .append(getRandomSingleDigit());
+        while (_computerBallCount.toString().length() < 3) {
+            String temp = Integer.toString(getRandomSingleDigit());
+
+            if (!_computerBallCount.toString().contains(temp)) {
+                _computerBallCount.append(temp);
+            }
+        }
     }
 
     public boolean setUserBallCountInput() {
