@@ -11,7 +11,6 @@ public class BaseballGame {
 
     int _strikeCount = 0;
     int _ballCount = 0;
-    int _retryCount = 0;
 
     public int getRandomSingleDigit() {
         return Randoms.pickNumberInRange(1, 9);
@@ -52,7 +51,9 @@ public class BaseballGame {
     }
 
     public void init() {
-
+        _userBallCount = new StringBuilder();
+        _strikeCount = 0;
+        _ballCount = 0;
     }
 
     public void printComputerBallCount() {
@@ -64,7 +65,11 @@ public class BaseballGame {
         printComputerBallCount();
         setUserBallCountInput();
 
-        checkAnswer();
+        while(!checkAnswer()) {
+            init();
+            printComputerBallCount();
+            setUserBallCountInput();
+        };
 
         System.out.println(_userBallCount.toString());
         System.out.println(_state);
@@ -87,12 +92,13 @@ public class BaseballGame {
             if (_ballCount > 0) {
                 System.out.printf(" "+_ballCount + "볼");
             }
+            System.out.println();
         }
         if (_strikeCount == 0 && _ballCount > 0) {
-            System.out.printf(_ballCount + "볼");
+            System.out.println(_ballCount + "볼");
         }
         if (_strikeCount == 0 && _ballCount == 0) {
-            System.out.printf("낫싱");
+            System.out.println("낫싱");
        }
         return false;
     }
