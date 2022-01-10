@@ -16,12 +16,12 @@ public class BaseballGame {
 
     public void play() {
         setComputerNumber();
-        Print.printComputerBallCount(_computerBallCount);
         setUserBallCountInput();
+
+        Print.printComputerBallCount(_computerBallCount);
 
         while (!checkAnswer()) {
             reset();
-            Print.printComputerBallCount(_computerBallCount);
             setUserBallCountInput();
         }
 
@@ -44,28 +44,20 @@ public class BaseballGame {
         }
     }
 
-    public boolean setUserBallCountInput() {
+    public void setUserBallCountInput() {
         Print.printEnterNumber();
-        // TODO:: 세번 input으로 받기
         String userInput = Console.readLine();
 
-        if (checkValidInput(userInput)) {
-            _userBallCount.append(userInput);
-        } else {
+        while (!checkValidInput(userInput)) {
             ErrorMessage.notValidUserInputValue();
-
-            return false;
+            userInput = Console.readLine();
         }
-
-        return true;
+        _userBallCount.append(userInput);
     }
 
     // TODO:: 숫자인경우로 한정해야됨. (reg)
     public boolean checkValidInput(String userInput) {
-        if (userInput.length() == 3) {
-            return true;
-        }
-        return false;
+        return userInput.length() == 3;
     }
 
     public void reset() {
