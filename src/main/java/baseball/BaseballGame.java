@@ -10,6 +10,25 @@ public class BaseballGame {
     int _strikeCount = 0;
     int _ballCount = 0;
 
+    public void play() {
+        setComputerNumber();
+        Print.printComputerBallCount(_computerBallCount);
+        setUserBallCountInput();
+
+        while (!checkAnswer()) {
+            reset();
+            Print.printComputerBallCount(_computerBallCount);
+            setUserBallCountInput();
+        }
+
+        if (checkGameContinue()) {
+            reset();
+            play();
+        }
+
+        Print.printEndGame();
+    }
+
     public void setComputerNumber() {
         Util.resetBallCount(_computerBallCount);
         while (_computerBallCount.toString().length() < 3) {
@@ -22,7 +41,8 @@ public class BaseballGame {
     }
 
     public boolean setUserBallCountInput() {
-        System.out.printf("숫자를 입력해 주세요 : ");
+        Print.printEnterNumber();
+        // TODO:: 세번 input으로 받기
         String userInput = Console.readLine();
 
         if (checkValidInput(userInput)) {
@@ -50,37 +70,13 @@ public class BaseballGame {
         _ballCount = 0;
     }
 
-    public void printComputerBallCount() {
-        System.out.println("computer number: " + _computerBallCount.toString());
-    }
-
-    public void play() {
-        setComputerNumber();
-        printComputerBallCount();
-        setUserBallCountInput();
-
-        while (!checkAnswer()) {
-            reset();
-            printComputerBallCount();
-            setUserBallCountInput();
-        }
-        ;
-
-        if (checkGameContinue()) {
-            reset();
-            play();
-        }
-
-        Print.printEndGame();
-    }
-
     public boolean checkGameContinue() {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        Print.printCheckGameContinue();
 
         String userInput = Console.readLine();
 
         while (!(userInput.equals("1") || userInput.equals("2"))) {
-            System.out.println("다시 입력해주세요.");
+            ErrorMessage.notValidGameContinueNumber();
             userInput = Console.readLine();
         }
 
@@ -90,27 +86,13 @@ public class BaseballGame {
         return false;
     }
 
-    ;
-
     public boolean checkAnswer() {
         if (_userBallCount.toString().equals(_computerBallCount.toString())) {
-            System.out.println("세개의 숫자를 모두 맞히셨습니다. 게임 종료");
+            Print.printSuccessfulGameEnd();
             return true;
         }
         setStrikeAndBallCount();
-        if (_strikeCount > 0) {
-            System.out.printf(_strikeCount + "스트라이크");
-            if (_ballCount > 0) {
-                System.out.printf(" " + _ballCount + "볼");
-            }
-            System.out.println();
-        }
-        if (_strikeCount == 0 && _ballCount > 0) {
-            System.out.println(_ballCount + "볼");
-        }
-        if (_strikeCount == 0 && _ballCount == 0) {
-            System.out.println("낫싱");
-        }
+        Print.printFeedback(_strikeCount, _ballCount);
         return false;
     }
 
