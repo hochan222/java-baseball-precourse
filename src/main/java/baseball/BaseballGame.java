@@ -57,7 +57,7 @@ public class BaseballGame {
 
     // TODO:: 숫자인경우로 한정해야됨. (reg)
     public boolean checkValidInput(String userInput) {
-        return userInput.length() == 3;
+        return userInput.length() == BALL_COUNT_MAX_LENGTH;
     }
 
     public void reset() {
