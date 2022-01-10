@@ -10,6 +10,10 @@ public class BaseballGame {
     int _strikeCount = 0;
     int _ballCount = 0;
 
+    private static final int BALL_COUNT_MAX_LENGTH = 3;
+    private static final String GAME_CONTINUE = "1";
+    private static final String GAME_END = "2";
+
     public void play() {
         setComputerNumber();
         Print.printComputerBallCount(_computerBallCount);
@@ -31,7 +35,7 @@ public class BaseballGame {
 
     public void setComputerNumber() {
         Util.resetBallCount(_computerBallCount);
-        while (_computerBallCount.toString().length() < 3) {
+        while (_computerBallCount.toString().length() < BALL_COUNT_MAX_LENGTH) {
             String temp = Integer.toString(Util.getRandomSingleDigit());
 
             if (!_computerBallCount.toString().contains(temp)) {
@@ -80,11 +84,11 @@ public class BaseballGame {
             userInput = Console.readLine();
         }
 
-        return userInput.equals("1");
+        return userInput.equals(GAME_CONTINUE);
     }
 
     public boolean checkValidGameContinueInput(String input) {
-        return input.equals("1") || input.equals("2");
+        return input.equals(GAME_CONTINUE) || input.equals(GAME_END);
     }
 
     public boolean checkAnswer() {
@@ -105,7 +109,7 @@ public class BaseballGame {
         int strikeCount = 0;
         int ballCount = 0;
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < BALL_COUNT_MAX_LENGTH; i++) {
             if (checkStrike(_computerBallCount, _userBallCount, i)) {
                 strikeCount++;
             } else if (checkBall(_computerBallCount, _userBallCount, i)) {
