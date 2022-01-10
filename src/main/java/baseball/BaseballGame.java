@@ -75,25 +75,30 @@ public class BaseballGame {
 
         String userInput = Console.readLine();
 
-        while (!(userInput.equals("1") || userInput.equals("2"))) {
+        while (!checkValidGameContinueInput(userInput)) {
             ErrorMessage.notValidGameContinueNumber();
             userInput = Console.readLine();
         }
 
-        if (userInput.equals("1")) {
-            return true;
-        }
-        return false;
+        return userInput.equals("1");
+    }
+
+    public boolean checkValidGameContinueInput(String input) {
+        return input.equals("1") || input.equals("2");
     }
 
     public boolean checkAnswer() {
-        if (_userBallCount.toString().equals(_computerBallCount.toString())) {
+        if (SuccessfulGameEnd()) {
             Print.printSuccessfulGameEnd();
             return true;
         }
         setStrikeAndBallCount();
         Print.printFeedback(_strikeCount, _ballCount);
         return false;
+    }
+
+    public boolean SuccessfulGameEnd() {
+        return _userBallCount.toString().equals(_computerBallCount.toString());
     }
 
     public void setStrikeAndBallCount() {
