@@ -33,7 +33,7 @@ public class BaseballGame {
         Print.printEndGame();
     }
 
-    public void setComputerNumber() {
+    private void setComputerNumber() {
         Util.resetBallCount(_computerBallCount);
         while (_computerBallCount.toString().length() < BALL_COUNT_MAX_LENGTH) {
             String temp = Integer.toString(Util.getRandomSingleDigit());
@@ -44,7 +44,7 @@ public class BaseballGame {
         }
     }
 
-    public void setUserBallCountInput() {
+    private void setUserBallCountInput() {
         Print.printEnterNumber();
         String userInput = Console.readLine();
 
@@ -55,19 +55,19 @@ public class BaseballGame {
         _userBallCount.append(userInput);
     }
 
-    public boolean checkValidInput(String userInput) {
+    private boolean checkValidInput(String userInput) {
         boolean isNumeric = userInput.matches("\\d*(\\.\\d+)?");
 
         return userInput.length() == BALL_COUNT_MAX_LENGTH && isNumeric;
     }
 
-    public void reset() {
+    private void reset() {
         Util.resetBallCount(_userBallCount);
         _strikeCount = 0;
         _ballCount = 0;
     }
 
-    public boolean checkGameContinue() {
+    private boolean checkGameContinue() {
         Print.printCheckGameContinue();
 
         String userInput = Console.readLine();
@@ -80,11 +80,11 @@ public class BaseballGame {
         return userInput.equals(GAME_CONTINUE);
     }
 
-    public boolean checkValidGameContinueInput(String input) {
+    private boolean checkValidGameContinueInput(String input) {
         return input.equals(GAME_CONTINUE) || input.equals(GAME_END);
     }
 
-    public boolean checkAnswer() {
+    private boolean checkAnswer() {
         if (SuccessfulGameEnd()) {
             Print.printSuccessfulGameEnd();
             return true;
@@ -94,11 +94,11 @@ public class BaseballGame {
         return false;
     }
 
-    public boolean SuccessfulGameEnd() {
+    private boolean SuccessfulGameEnd() {
         return _userBallCount.toString().equals(_computerBallCount.toString());
     }
 
-    public void setStrikeAndBallCount() {
+    private void setStrikeAndBallCount() {
         int strikeCount = 0;
         int ballCount = 0;
 
@@ -114,11 +114,11 @@ public class BaseballGame {
         _ballCount = ballCount;
     }
 
-    public boolean checkStrike(StringBuilder ballCountA, StringBuilder ballCountB, int index) {
+    private boolean checkStrike(StringBuilder ballCountA, StringBuilder ballCountB, int index) {
         return ballCountA.charAt(index) == ballCountB.charAt(index);
     }
 
-    public boolean checkBall(StringBuilder ballCountA, StringBuilder ballCountB, int index) {
+    private boolean checkBall(StringBuilder ballCountA, StringBuilder ballCountB, int index) {
         return ballCountA.toString().contains(String.valueOf(ballCountB.charAt(index)));
     }
 }

@@ -46,7 +46,7 @@ public class Print {
         System.out.println(result);
     }
 
-    public static boolean isExistCount(int count) {
+    private static boolean isExistCount(int count) {
         return count > 0;
     }
 }
