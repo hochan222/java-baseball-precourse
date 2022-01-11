@@ -18,7 +18,7 @@ public class BaseballGame {
         setComputerNumber();
         setUserBallCountInput();
 
-        Print.printComputerBallCount(_computerBallCount);
+//        Print.printComputerBallCount(_computerBallCount);
 
         while (!checkAnswer()) {
             reset();
@@ -55,9 +55,10 @@ public class BaseballGame {
         _userBallCount.append(userInput);
     }
 
-    // TODO:: 숫자인경우로 한정해야됨. (reg)
     public boolean checkValidInput(String userInput) {
-        return userInput.length() == BALL_COUNT_MAX_LENGTH;
+        boolean isNumeric = userInput.matches("\\d*(\\.\\d+)?");
+
+        return userInput.length() == BALL_COUNT_MAX_LENGTH && isNumeric;
     }
 
     public void reset() {
